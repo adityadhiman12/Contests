@@ -10,41 +10,34 @@ int main()
 	{
 		string s;
 		cin>>s;
-		int c1=0;
-		int ans=0;
-		int c2=0;
-		int start=0;
-		int end=s.length()-1;
-		while(start<=end)
+		int ones=0;
+		int zeroes=0;
+		for(int i=0;i<s.length();i++)
 		{
-			if(c1==2)
-			{
-				if(s[start]=='1')
-				{
-					start++;
-					ans++;
-				}
-			}	
-			if(c2==2)
-			{
-				if(s[start]=='0')
-				{
-					start++;
-					ans++;
-				}
-			}
-			if(s[start]=='0')
-				c1++;
+			if(s[i]=='0')
+				zeroes++;
 			else
-				c2++;
-			if(s[end]=='0')
-				c1++;
-			else
-				c2++;
-			start++;
-			end--;
-			
+				ones++;
 		}
+		int ans=min(zeroes,ones);
+		int done0s=0;
+		int done1s=0;
+		for(int i=0;i<s.length();i++)
+		{
+			if(s[i]=='0')
+			{
+				done0s++;
+				zeroes--;
+			}
+			if(s[i]=='1')
+			{
+				done1s++;
+				ones--;
+			}
+			ans=min(ans,done1s+zeroes);
+			ans=min(ans,done0s+ones);
+		}
+		
 		cout<<ans<<"\n";		
 	}
 }	

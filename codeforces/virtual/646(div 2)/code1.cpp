@@ -11,20 +11,27 @@ int main()
 		ll n,x;
 		cin>>n>>x;
 		vector<ll>a(n);
-		int sum=0;
-		int f=0;
+		int odd=0;
+		int even=0;
 		for(int i=0;i<n;i++)
 		{
 			cin>>a[i];
 			if(a[i]%2==1)
-			{
-				sum+=a[i];
-			}
+				odd++;
 			else
-			{
 				even++;
-			}
 		}
-				
+		int flag=0;
+		for(int i=1;i<=odd && i<=x;i+=2)
+		{
+			int need=x-i;
+			if(need<=even)
+				flag=1;
+		}
+		if(flag==1)
+			cout<<"Yes"<<"\n";
+		else
+			cout<<"No"<<"\n";
 	}
+	return 0;
 }	
